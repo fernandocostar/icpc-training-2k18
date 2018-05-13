@@ -5,8 +5,6 @@ using namespace std;
 int possible[MAX];
 
 int main(){
-		int possible[MAX];
-
 		//calc possible
 		int horas = 0, minutos = 0;
 		while(horas != 360){
