@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
-#define MAX 361
-
 using namespace std;
+
+#define MAX 361
+int possible[MAX];
 
 int main(){
 		int possible[MAX];
-		memset(possible, 0 , MAX*sizeof(int));
 
 		//calc possible
 		int horas = 0, minutos = 0;
