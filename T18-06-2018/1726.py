@@ -53,18 +53,21 @@ def solve(v):
 	result = set()
 	if "(" not in v:
 		return solve_sum(solve_mult(v))
-	parta = []
-	partb = []
-	begin = 0
-	end = len(v)-1
-	while(v[begin] != "(" or v[end] != ")" ):
-		if v[begin] != "(":
-			begin += 1
-		if v[end] != ")":
-			end -= 1
-	return solve_sum(solve_mult(v[:begin] + solve_sum(solve_mult(v[begin + 1:end])) + v[end+1:]))
+	stack = []
+	to_solve = []
+	i = 0
+	while(i < len(v)):
+		if v[i] == ")":
+			while(stack[-1] != "("):
+				to_solve.insert(0, stack.pop())
+			stack.pop() #remove ( parentheses
+			if len(to_solve): stack.append(solve_sum(solve_mult(to_solve))[0])
+			to_solve.clear()
+		else:
+			stack.append(v[i])
+		i += 1
+	return solve_sum(solve_mult(stack))
 
-stack = []
 while True:
 	try:
 		l = input()
